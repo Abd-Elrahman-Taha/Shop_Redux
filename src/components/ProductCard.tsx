@@ -6,6 +6,7 @@ import { useAppDispatch , useAppSelector } from "../hooks/hooks";
 import EditModel from "./EditModel";
 import {useNavigate} from 'react-router-dom'
 import { FaCartPlus, FaEdit, FaTrash, FaStar} from "react-icons/fa";
+import { useRef } from "react";
 interface Props {
   product: Product;
 }
@@ -15,6 +16,50 @@ const ProductCard = ({ product }: Props) => {
     const {isOpen} = useAppSelector((state) => state.editProduct);
     const {user} = useAppSelector((state) => state.auth);
     const navigate = useNavigate();
+
+    const cardRef = useRef<HTMLDivElement>(null);
+
+const handleMouseMove = (e: React.MouseEvent) => {
+  const card = cardRef.current;
+  if (!card) return;
+
+  const rect = card.getBoundingClientRect();
+
+  const intensity = 5; // قوة الانحناء
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const normalizedX = (x / rect.width - 0.5) * 2;
+  const normalizedY = (y / rect.height - 0.5) * 2;
+
+  const rotateY = normalizedX * intensity;
+  const rotateX = -normalizedY * intensity;
+
+card.style.setProperty("--mouse-x", `${x}px`);
+card.style.setProperty("--mouse-y", `${y}px`);
+
+card.style.setProperty("--rotate-x", `${rotateX}deg`);
+card.style.setProperty("--rotate-y", `${rotateY}deg`);
+  const pushBack = 40;
+
+card.style.setProperty("--translate-z", `${-pushBack}px`);
+};
+
+const handleMouseLeave = () => {
+  const card = cardRef.current;
+  if (!card) return;
+  card.style.setProperty("--rotate-x", "0deg");
+  card.style.setProperty("--rotate-y", "0deg");
+  card.style.setProperty("--scale", "1");
+};
+
+
+
+
+
+
+
     const handleAddToCart = () => {
         if(!user){
             alert("Please login to add to cart");
@@ -25,7 +70,12 @@ const ProductCard = ({ product }: Props) => {
     }
     return (
   <>
-    <div className="group overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <div 
+      ref={cardRef}
+      className="product-card group overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
 
       {/* Image */}
       <div className="relative h-64 overflow-hidden bg-slate-100">
