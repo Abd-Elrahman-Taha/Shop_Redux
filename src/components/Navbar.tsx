@@ -10,13 +10,16 @@ import {
   HiArrowRightOnRectangle,
   HiBars3,
   HiXMark,
+  HiShoppingBag,
 } from "react-icons/hi2";
+
 
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { setSearchTerm } from "../features/products/searchSlice";
 import { setSortBy } from "../features/products/sortSlice";
 import { logout } from "../features/products/auth/authSlice";
 import { clearCart } from "../features/products/cartSlice";
+import { LuLayoutDashboard } from "react-icons/lu";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -51,7 +54,7 @@ const Navbar = () => {
             to="/"
             className="text-3xl font-black tracking-tight text-slate-900"
           >
-            Shop<span className="text-blue-600">X</span>
+            Shop<span className="text-[#8A735A]">X</span>
           </Link>
 
           {/* Search */}
@@ -65,7 +68,7 @@ const Navbar = () => {
               onChange={(e) =>
                 dispatch(setSearchTerm(e.target.value))
               }
-              className="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500 focus:bg-white"
+              className="w-full rounded-xl border border-slate-300 bg-[#F8F5F0] py-3 pl-11 pr-4 outline-none transition focus:border-[#D4C4AD] focus:bg-white"
             />
           </div>
 
@@ -76,7 +79,7 @@ const Navbar = () => {
             onChange={(e) =>
               dispatch(setSortBy(e.target.value))
             }
-            className="rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
+            className="rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-[#D4C4AD] focus:bg-[#F8F5F0] hover:bg-[#F8F5F0] transition"
           >
             <option value="default">Default</option>
             <option value="price-asc">Price: Low → High</option>
@@ -90,14 +93,19 @@ const Navbar = () => {
 
             <Link
               to="/"
-              className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-blue-600"
+              className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]"
             >
               <HiHome size={22} />
             </Link>
-
+             <Link
+  to="/shop"
+  className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]"
+>
+  <HiShoppingBag size={22} />
+  </Link>
             <Link
               to="/cart"
-              className="relative rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-blue-600"
+              className="relative rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]"
             >
               <FaShoppingCart size={22} />
 
@@ -120,11 +128,14 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-blue-600"
+                className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]"
               >
                 <FaUserCircle size={22} />
               </Link>
             )}
+            {user && <Link to="/dashboard" className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]">
+              <LuLayoutDashboard size={22} />
+            </Link>}
           </div>
         </div>
 
@@ -139,7 +150,7 @@ const Navbar = () => {
               to="/"
               className="text-3xl font-black text-slate-900"
             >
-              Shop<span className="text-blue-600">X</span>
+              Shop<span className="text-[#8A735A]">X</span>
             </Link>
 
             <button
@@ -165,7 +176,7 @@ const Navbar = () => {
               onChange={(e) =>
                 dispatch(setSearchTerm(e.target.value))
               }
-              className="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-11 pr-4 outline-none focus:border-blue-500"
+              className="w-full rounded-xl border border-slate-300 bg-[#F8F5F0] py-3 pl-11 pr-4 outline-none focus:border-[#D4C4AD]"
             />
           </div>
 
@@ -178,7 +189,7 @@ const Navbar = () => {
               onChange={(e) =>
                 dispatch(setSortBy(e.target.value))
               }
-              className="w-full rounded-xl border border-slate-300 bg-white p-3 outline-none focus:border-blue-500"
+              className="w-full rounded-xl border border-slate-300 bg-white p-3 outline-none focus:border-[#D4C4AD]"
             >
               <option value="default">Default</option>
               <option value="price-asc">
@@ -206,14 +217,25 @@ const Navbar = () => {
 >
   <div className="mb-4 rounded-2xl border border-slate-200 bg-white shadow-lg">
 
-    <Link
-      to="/"
-      onClick={() => setIsMenuOpen(false)}
-      className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
-    >
-      <HiHome size={22} />
-      Home
-    </Link>
+      <Link
+  to="/"
+  onClick={() => setIsMenuOpen(false)}
+  className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+>
+  <HiHome size={22} />
+  Home
+</Link>
+
+<Link
+  to="/shop"
+  onClick={() => setIsMenuOpen(false)}
+  className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+>
+  <HiShoppingBag size={22} />
+  Shop
+</Link>
+
+ 
 
     <Link
       to="/cart"
@@ -224,6 +246,7 @@ const Navbar = () => {
         <FaShoppingCart />
         Cart
       </div>
+      
 
       {totalItems > 0 && (
         <span className="rounded-full bg-red-500 px-2 py-1 text-xs text-white">
@@ -231,7 +254,16 @@ const Navbar = () => {
         </span>
       )}
     </Link>
-
+      {user && (
+  <Link
+    to="/dashboard"
+    onClick={() => setIsMenuOpen(false)}
+    className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+  >
+    <LuLayoutDashboard size={22} />
+    Dashboard
+  </Link>
+)}
     {user ? (
       <button
         onClick={handleLogout}
