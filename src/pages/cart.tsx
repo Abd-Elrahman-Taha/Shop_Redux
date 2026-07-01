@@ -48,7 +48,7 @@ const Cart = () => {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center justify-between rounded-2xl bg-white p-5 shadow transition hover:shadow-lg"
+                  className="flex flex-col gap-4 rounded-2xl bg-white p-5 shadow transition hover:shadow-lg sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="flex items-center gap-5">
                     <img
