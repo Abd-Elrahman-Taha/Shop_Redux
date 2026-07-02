@@ -72,7 +72,7 @@ const Home = () => {
 
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
 
-            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+            <div className=" image rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
               <FaShoppingBag
                 className="mb-6 text-[#8A735A]"
                 size={40}
@@ -87,7 +87,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+            <div className=" image rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
               <FaShippingFast
                 className="mb-6 text-green-600"
                 size={40}
@@ -102,7 +102,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+            <div className=" image rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
               <FaShieldAlt
                 className="mb-6 text-red-500"
                 size={40}
@@ -117,7 +117,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+            <div className=" image rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
               <FaHeadset
                 className="mb-6 text-purple-600"
                 size={40}
