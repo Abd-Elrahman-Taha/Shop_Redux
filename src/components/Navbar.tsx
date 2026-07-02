@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-lg shadow-sm">
+    <header className="navbar sticky top-0 z-50 border-b border-slate-200  backdrop-blur-lg shadow-sm">
       <div className="mx-auto max-w-7xl px-4">
 
         {/* ================= Desktop ================= */}
