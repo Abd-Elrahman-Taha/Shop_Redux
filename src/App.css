@@ -109,3 +109,12 @@ body {
     font-weight: 600;
     font-size: 20px;
 }
+
+.products{
+    text-decoration: underline;
+    text-decoration-color: #72470a;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 10px;
+    text-decoration-style: solid;
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.342);    
+}
